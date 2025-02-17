@@ -5,14 +5,18 @@ import {useEffect} from "react";
  function Tasks() {
    const dispatch = useDispatch()
    // const tasks = useSelector((state) => state.tasks)
-   const { tasks, isLoading, error } = useSelector((state) => state.tasks);
+   const { tasks, error, status } = useSelector((state) => state.tasks);
 
    useEffect(() => {
-    dispatch(fetchTasksAsync())
-  },[dispatch])
-  if(isLoading) {
+     if(status == 'ide') {
+       dispatch(fetchTasksAsync())
+     }
+
+  },[dispatch,status])
+  if(status == 'loading') {
     return <p>Is loading....</p>
   }
+  if(status == 'failed') {return <div>Error: {error}</div>}
   return (
     <>
     <div>
