@@ -1,27 +1,11 @@
-import { createContext, useReducer, useContext } from 'react';
-import { initialState, rootReducer } from './rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import tasksReducer from '@/features/tasks/tasksSlice';
+// import usersReducer from '../features/users/usersSlice';
 
-const StoreContext = createContext();
+const store = configureStore({
+  reducer: {
+    tasks: tasksReducer, // Key: 'tasks' handles task-related state
 
-export function  StoreProvider({children}) {
-  const [state, dispatch] = useReducer(rootReducer, initialState);
-  const login = (user) => {
-    dispatch({type: 'LOGIN', payload: user})
-  }
-  const logout = () => {
-    dispatch({type: 'LOGOUT'})
-  }
-
- const addTodo = (todo) => {
-    dispatch({type: 'ADD_TODO', payload: todo})
-  }
-
-  return (
-    <StoreContext.Provider value={{state, login, logout, addTodo}}>
-      {children}
-    </StoreContext.Provider>
-  )
-}
-export function useStore() {
-  return useContext(StoreContext);
-}
+  },
+});
+export default store;
