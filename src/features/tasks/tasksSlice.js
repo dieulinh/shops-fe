@@ -1,27 +1,23 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-// import axios from '@/api/axiosInstance.js'
-import {fetchTasks} from "@/features/tasks/tasksAPI.js";
+
+import { fetchTasks, addTask } from "@/features/tasks/tasksAPI.js";
 
 const initialState = {
   tasks: [],
-  isLoadingTasks: false,
+  status: 'ide',
   error: null
 }
-
 export const fetchTasksAsync = createAsyncThunk('tasks/fetchTasks', async () => {
-
-  // const response = await axios.get('/tasks');
   return await fetchTasks();
+})
+
+export const addTaskAsync = createAsyncThunk('tasks/addTasks', async(task) => {
+  return await addTask(task);
 })
 const tasksSlice = createSlice({
   name: 'tasks',
-  initialState: {
-    tasks: [],
-    status: 'ide',
-    error: null
-  },
+  initialState,
   reducers: {},
-
 
   extraReducers: (builder) => {
   builder
@@ -30,18 +26,26 @@ const tasksSlice = createSlice({
     })
     .addCase(fetchTasksAsync.fulfilled, (state, action) => {
       state.status = 'succeeded'
-
+      console.log(action.payload)
       state.tasks = action.payload.tasks;
     })
     .addCase(fetchTasksAsync.rejected, (state, action) => {
       state.status = 'failed'
       state.error = action.error.message;
     })
+    .addCase(addTaskAsync.pending, (state,action) => {
+      state.status = 'loading'
+      console.log('action', action)
+    })
+    .addCase(addTaskAsync.fulfilled, (state, action) => {
+      state.status = 'succeeded'
+      state.tasks.push(action.payload.task);
+    })
+    .addCase(addTaskAsync.rejected, (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message;
+    })
 }
 
-
 })
-
-
-
 export default tasksSlice.reducer;

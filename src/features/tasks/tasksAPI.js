@@ -4,9 +4,9 @@ export const fetchTasks = async () => {
   return response.data
 
 }
-export const createTask = ({task}) => {
-  const response = axios.post('/tasks', task)
-  console.log(response)
+export const addTask = async ({task}) => {
+
+  const response = await  axios.post('/tasks',  {task})
+
   return response.data
 }
-// export default {fetchTasks}

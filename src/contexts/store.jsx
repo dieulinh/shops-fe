@@ -4,8 +4,7 @@ import tasksReducer from '@/features/tasks/tasksSlice';
 
 const store = configureStore({
   reducer: {
-    tasks: tasksReducer, // Key: 'tasks' handles task-related state
-
+    tasks: tasksReducer,
   },
 });
 export default store;
