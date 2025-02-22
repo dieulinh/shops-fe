@@ -4,7 +4,8 @@ import { fetchProducts, addProduct } from "./productsAPI.js";
 
 const initialState = {
   products: [],
-  status: 'ide',
+  currentProduct: null,
+  status: 'idle',
   error: null
 }
 
@@ -13,14 +14,17 @@ export const fetchProductsAsync = createAsyncThunk('products/fetchProducts', asy
   return await fetchProducts();
 })
 
-export const addTaskAsync = createAsyncThunk('products/addProduct', async({task}) => {
-  console.log(task)
-  return await addProduct(task);
+
+export const addProductAsync = createAsyncThunk('products/addProduct', async(product) => {
+  console.log('adding product', product)
+  return await addProduct(product);
 })
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+
+  },
 
   extraReducers: (builder) => {
     builder
@@ -36,20 +40,19 @@ const productsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message;
       })
-      .addCase(addTaskAsync.pending, (state) => {
+      .addCase(addProductAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addTaskAsync.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-
-        state.tasks = [...state.tasks,action.payload.task]
+      .addCase(addProductAsync.fulfilled, (state, action) => {
+        console.log(action.payload)
+        state.products.unshift(action.payload.product)
       })
-      .addCase(addTaskAsync.rejected, (state, action) => {
+      .addCase(addProductAsync.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message;
       })
-  }
 
+  }
 })
 
 export default productsSlice.reducer;

@@ -11,7 +11,7 @@ export const fetchTasksAsync = createAsyncThunk('tasks/fetchTasks', async () => 
   return await fetchTasks();
 })
 
-export const addTaskAsync = createAsyncThunk('tasks/addTasks', async(task) => {
+export const addTaskAsync = createAsyncThunk('tasks/addTask', async(task) => {
   return await addTask(task);
 })
 const tasksSlice = createSlice({

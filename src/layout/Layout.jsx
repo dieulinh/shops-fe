@@ -5,15 +5,12 @@ import Sidebar from "./Sidebar";
 
 const Layout = () => {
   return (
-    <div className="">
+    <div className="container w-100">
       <Sidebar />
-      <div className="">
-        <Navbar />
-        <main className="">
-          <Outlet />
-        </main>
-        {/*<Footer />*/}
-      </div>
+      <Navbar />
+      <main className="container">
+        <Outlet />
+      </main>
     </div>
   );
 };

@@ -6,20 +6,26 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`bg-gray-900 text-white h-screen p-5 ${isOpen ? "w-64" : "w-20"} transition-all`}>
+    <div className={`sidebar-container ${isOpen ? "w-64" : "w-20"} transition-all`}>
       <button onClick={() => setIsOpen(!isOpen)} className="mb-5 text-gray-400">
         <Menu size={24} />
       </button>
-      <ul className="space-y-4">
+      <ul className="left-menu">
         <li>
           <Link to="/" className="flex items-center space-x-3">
-            <Home size={24} />
+            <Home size={24}/>
             {isOpen && <span>Home</span>}
           </Link>
         </li>
         <li>
+          <Link to="/products" className="flex items-center space-x-3">
+            <Home size={24}/>
+            {isOpen && <span>Products</span>}
+          </Link>
+        </li>
+        <li>
           <Link to="/about" className="flex items-center space-x-3">
-            <Info size={24} />
+            <Info size={24}/>
             {isOpen && <span>About</span>}
           </Link>
         </li>

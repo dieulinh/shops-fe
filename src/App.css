@@ -3,13 +3,17 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  width: 100vw;
 }
 ul li {
   list-style: none;
 }
 h1 {
     font-size: 2em;
+}
+.sidebar-container {
+  display: flex;
+    justify-content: space-between;
 }
 .logo {
   height: 6em;
@@ -45,4 +49,14 @@ h1 {
 
 .read-the-docs {
   color: #888;
+}
+.left-menu {
+  display: flex;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+main {
+  width: 100%;
 }

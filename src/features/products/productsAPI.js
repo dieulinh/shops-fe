@@ -4,8 +4,10 @@ export const fetchProducts = async () => {
 
   return response.data
 }
+
 export const addProduct = async ({product}) => {
-  const response = axios.post('/products', product)
+
+  const response = await axios.post('/products', {product})
 
   return response.data
 }
