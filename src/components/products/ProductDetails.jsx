@@ -2,12 +2,12 @@ import {useEffect} from "react";
 import { useLocation, useParams } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchProductAsync} from "@/features/products/productSlice.js";
+import {ShoppingCartIcon} from "lucide-react";
 
 export default function ProductDetails() {
-
   const dispatch = useDispatch()
   const location = useLocation()
-  const productId = location.state?.productId
+  const productId = location.state?.productId || useParams().id
 
   const {product, status} = useSelector((state) => state.product)
   useEffect(() => {
@@ -15,12 +15,8 @@ export default function ProductDetails() {
 
     if (productId) {
       dispatch(fetchProductAsync(productId))
-
       console.log('currentProduct', product)
     }
-
-
-
   }, [dispatch, productId])
 
   const addToCart = () => {
@@ -35,8 +31,9 @@ export default function ProductDetails() {
       <h1>Product Details</h1>
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <div>
-        <button onClick={addToCart}>Add to Cart</button>
+      <div className={"form-actions"}>
+        <button onClick={addToCart} className={"add-to-cart"}>add to cart <ShoppingCartIcon/></button>
+        <button onClick={addToCart} className={"buy-now"}>buy now </button>
       </div>
     </div>
   )

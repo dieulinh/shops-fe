@@ -1,7 +1,7 @@
 
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0;
   padding: 2rem;
   width: 100vw;
 }
@@ -27,7 +27,18 @@ h1 {
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
+.user-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  justify-content: space-between;
+}
+.add-to-cart {
+  background: #e6d815;
+}
+.buy-now {
+  background: #ffa41c;
+}
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

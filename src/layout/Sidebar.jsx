@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Home, Info, Menu } from "lucide-react";
+import { Home, Info, Menu, Store } from "lucide-react";
 import { useState } from "react";
 
 const Sidebar = () => {
@@ -11,12 +11,6 @@ const Sidebar = () => {
         <Menu size={24} />
       </button>
       <ul className="left-menu">
-        <li>
-          <Link to="/" className="flex items-center space-x-3">
-            <Home size={24}/>
-            {isOpen && <span>Home</span>}
-          </Link>
-        </li>
         <li>
           <Link to="/products" className="flex items-center space-x-3">
             <Home size={24}/>
