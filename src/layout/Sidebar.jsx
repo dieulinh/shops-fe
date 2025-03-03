@@ -6,7 +6,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`sidebar-container ${isOpen ? "w-64" : "w-20"} transition-all`}>
+    <div className={`sidebar-container ${isOpen ? "w-100" : "w-20"} transition-all`}>
       <button onClick={() => setIsOpen(!isOpen)} className="mb-5 text-gray-400">
         <Menu size={24} />
       </button>

@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchProduct, uploadProductPhoto } from './productAPI'
 const initialState = {
