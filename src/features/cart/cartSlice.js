@@ -12,7 +12,7 @@ const cartSlice = createSlice({
   reducers: {
 
     addToCart: (state, action) => {
-      console.log('adding to cart item', action.payload)
+
       state.count = state.count + 1
       const item = state.cart.find(item => item.id === action.payload.id)
       if (item) {
@@ -23,16 +23,16 @@ const cartSlice = createSlice({
     },
     setCart: (state, action) => {
         const {index, newQuantity} = action.payload
-
         const updatedCart = [...state.cart];
         updatedCart[index] = { ...updatedCart[index], quantity: newQuantity };
         state.count = updatedCart.reduce((count, item) => count + parseInt(item.quantity), 0)
         state.cart = updatedCart;
-
     },
 
     removeFromCart: (state, action) => {
-      state.cart = state.cart.filter(item => item.id !== action.payload.id)
+      let updatedCart = state.cart.filter(item => item.id !== action.payload.id)
+      state.count = updatedCart.reduce((count, item) => count + parseInt(item.quantity), 0)
+      state.cart = updatedCart;
     }
   },
 

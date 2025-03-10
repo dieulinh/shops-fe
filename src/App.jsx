@@ -10,17 +10,42 @@ import Cart from "@/components/cart/Cart.jsx";
 import ProductDetails from "@/components/products/ProductDetails.jsx";
 import ProductPhotoForm from "@/components/products/ProductPhotoForm.jsx";
 import CheckoutCart from "@/components/cart/CheckoutCart.jsx";
+import {loadStripe} from "@stripe/stripe-js";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import CheckoutForm from "@/components/cart/CheckoutForm.jsx";
+import {Elements} from "@stripe/react-stripe-js";
+import ConfirmOrder from "@/components/orders/ConfirmOrder.jsx";
 
-const Home = () => <h1>Home Page</h1>;
-const About = () => <h1>About Page</h1>;
 
+const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const App = () => {
+  const [stripeOptions, setStripeOptions] = useState({});
+  const stripeToken = useSelector(state => state.checkout.clientSecret);
+  const appearance = {
+    theme: 'stripe',
+  };
+  useEffect(() => {
+    if(!stripeToken) return;
+    setStripeOptions({
+      clientSecret: stripeToken,
+      appearance
+    });
+  }, [stripeToken]);
+
   return (
-    <div>
+    <>
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<CheckoutCart />} />
+          <Route path="/checkout"  element={
+            <Elements stripe={stripePromise} options={{ clientSecret: stripeToken }}>
+              <CheckoutCart />
+            </Elements>
+          } />
+          <Route path="/orders/confirm" element={<ConfirmOrder />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/about" element={<About />} />
           <Route path={"/products"} element={<Products />} />
@@ -28,9 +53,9 @@ const App = () => {
           <Route path={"/products/:id/upload"} element={<ProductPhotoForm />} />
           <Route path={"/products/add"} element={<ProductForm />} />
         </Route>
-        {/*<Route path="/login" element={<Login />} />*/}
+
       </Routes>
-    </div>
+    </>
   );
 };
 

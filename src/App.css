@@ -1,9 +1,8 @@
 
 #root {
-  max-width: 1280px;
   margin: 0;
   padding: 2rem;
-  width: 100vw;
+  width: 100%;
 }
 ul li {
   list-style: none;
@@ -11,9 +10,23 @@ ul li {
 h1 {
     font-size: 2em;
 }
+.brand-text {
+  font-size: 3rem;
+  filter: hue-rotate(36deg);
+  box-shadow: 0px 2px #fa63e4;
+}
 .sidebar-container {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+
+  li {
+    padding: 5px;
+
+  }
+  a {
+    color: #0f4be2;
+    font-size: 1.2rem;
+  }
 }
 .logo {
   height: 6em;
@@ -57,6 +70,8 @@ h1 {
 }
 .left-menu {
   display: flex;
+  width: 80%;
+  justify-content: flex-end;
 }
 .header-nav {
   display: flex;

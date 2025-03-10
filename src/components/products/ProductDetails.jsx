@@ -41,14 +41,13 @@ export default function ProductDetails() {
   }, [product])
 
   const handleAddToCart = () => {
-    console.log('adding to cart', product)
     dispatch(addToCart(product))
   }
 
   if (status === 'loading') {
     return <div>Loading...</div>
   }
-  console.log('render ...', product)
+
   return (
     <div className={"container w-100"}>
 
@@ -57,7 +56,6 @@ export default function ProductDetails() {
         <div className={"flex-column photo-gallery"}>
           {product.photos?.length && photoUrls.map((photo,index) => <img src={photo} alt={product.name} key={index}/>)}
         </div>
-
         <div>
           <p className={"product-description"}>{product.description}</p>
           <div className={"form-actions"}>

@@ -13,13 +13,12 @@ const Sidebar = () => {
       <ul className="left-menu">
         <li>
           <Link to="/products" className="flex items-center space-x-3">
-            <Home size={24}/>
             {isOpen && <span>Products</span>}
           </Link>
         </li>
         <li>
           <Link to="/about" className="flex items-center space-x-3">
-            <Info size={24}/>
+
             {isOpen && <span>About</span>}
           </Link>
         </li>

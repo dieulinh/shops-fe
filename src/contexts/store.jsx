@@ -3,13 +3,17 @@ import tasksReducer from '@/features/tasks/tasksSlice';
 import productsReducer from '@/features/products/productsSlice.js'
 import productReducer from '@/features/products/productSlice.js'
 import cartReducer from '@/features/cart/cartSlice.js'
+import checkoutReducer from '@/features/checkout/checkoutSlice.js'
+import currentOrderReducer from '@/features/orders/currentOrderSlice.js'
 
 const store = configureStore({
   reducer: {
     tasks: tasksReducer,
     products: productsReducer,
     product: productReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    checkout: checkoutReducer,
+    currentOrder: currentOrderReducer,
   },
 });
 export default store;
