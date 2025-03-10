@@ -1,6 +1,7 @@
 import {fetchTasksAsync, addTaskAsync} from '../features/tasks/tasksSlice.js'
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect, useState} from "react";
+import AddEventButton from "@/components/tasks/AddEventButton.jsx";
 
  function Tasks() {
    const dispatch = useDispatch()
@@ -15,23 +16,29 @@ import {useEffect, useState} from "react";
    }
 
    useEffect(() => {
-     if(status == 'ide') {
+     if(status == 'idle') {
        dispatch(fetchTasksAsync())
      }
   },[dispatch, status])
-  if(status == 'loading') {
+  if(status === 'loading') {
     return <p>Is loading....</p>
   }
-  if(status == 'failed') {return <div>Error: {error}</div>}
+  if(status === 'failed') {return <div>Error: {error}</div>}
   return (
     <>
       <input placeholder={'Input your task'} onBlur={handleUpdateTask}/>
-      <div><button onClick={handleAddTask}>Add task</button></div>
+      <div className={"flex "}>
+        <button onClick={handleAddTask}>Add task</button>
+        <AddEventButton title={task} />
+      </div>
+
       <div>
         Task List
       </div>
-      {tasks.length && tasks.map((task) => (<div key={task.id}>{task.text}</div>))
+      <ul>
+      {tasks.length && tasks.map((task) => (<li className="task-item" key={task.id}>{task.text}</li>))
       }
+      </ul>
 
     </>
   )

@@ -16,8 +16,9 @@
     width: 100%;
     justify-content: flex-start;
 }
-button {
+button,input,select {
     line-height: 35px;
+
 }
 .form-actions > button {
     margin: 10px 10px;

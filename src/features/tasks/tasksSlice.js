@@ -4,7 +4,7 @@ import { fetchTasks, addTask } from "@/features/tasks/tasksAPI.js";
 
 const initialState = {
   tasks: [],
-  status: 'ide',
+  status: 'idle',
   error: null
 }
 export const fetchTasksAsync = createAsyncThunk('tasks/fetchTasks', async () => {
@@ -35,7 +35,7 @@ const tasksSlice = createSlice({
     })
     .addCase(addTaskAsync.pending, (state,action) => {
       state.status = 'loading'
-      console.log('action', action)
+
     })
     .addCase(addTaskAsync.fulfilled, (state, action) => {
       state.status = 'succeeded'
