@@ -2,6 +2,7 @@ import {fetchTasksAsync, addTaskAsync} from '../features/tasks/tasksSlice.js'
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect, useState} from "react";
 import AddEventButton from "@/components/tasks/AddEventButton.jsx";
+import GoogleMeetEvent from "@/components/tasks/GoogleMeetEvent.jsx";
 
  function Tasks() {
    const dispatch = useDispatch()
@@ -29,7 +30,9 @@ import AddEventButton from "@/components/tasks/AddEventButton.jsx";
       <input placeholder={'Input your task'} onBlur={handleUpdateTask}/>
       <div className={"flex "}>
         <button onClick={handleAddTask}>Add task</button>
+
         <AddEventButton title={task} />
+        <GoogleMeetEvent title={task}/>
       </div>
 
       <div>
