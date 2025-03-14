@@ -5,7 +5,7 @@ const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const API_KEY = process.env.GOOGLE_API_KEY;
 const SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email";
 
-const GoogleMeetEvent = () => {
+const GoogleMeetEvent = ({title,description='',saveMeeting}) => {
   const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
@@ -46,14 +46,14 @@ const GoogleMeetEvent = () => {
     }
 
     const event = {
-      summary: "Project Video Meeting",
-      description: "Discussion about the new project",
+      summary: title,
+      description: description,
       start: {
-        dateTime: new Date().toISOString(), // Meeting starts now
+        dateTime: new Date(Date.now() +24*3600000).toISOString(), // Meeting starts 1day from now
         timeZone: "America/Los_Angeles",
       },
       end: {
-        dateTime: new Date(Date.now() + 3600000).toISOString(), // Ends in 1 hour
+        dateTime: new Date(Date.now() + +24*3600000 + 3600000).toISOString(), // Ends in 1 hour
         timeZone: "America/Los_Angeles",
       },
       attendees: [{ email: userEmail }], // Use the authenticated user's email
@@ -73,7 +73,9 @@ const GoogleMeetEvent = () => {
       const meetLink = response.result.conferenceData?.entryPoints?.[0]?.uri;
       if (meetLink) {
         alert(`Google Meet link: ${meetLink}`);
-        window.open(meetLink, "_blank");
+        saveMeeting(meetLink)
+
+        // window.open(meetLink, "_blank");
       } else {
         alert("Failed to generate Meet link.");
       }
@@ -83,10 +85,7 @@ const GoogleMeetEvent = () => {
   };
 
   return (
-    <div>
       <button onClick={handleAuth}>Generate Google Meet Event</button>
-      {userEmail && <p>Logged in as: {userEmail}</p>}
-    </div>
   );
 };
 

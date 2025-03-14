@@ -24,7 +24,7 @@ h1 {
 
   }
   a {
-    color: #0f4be2;
+    color: #3431D3;
     font-size: 1.2rem;
   }
 }
@@ -97,10 +97,16 @@ main {
 .product-description {
   padding: 20px;
 }
+.task-item {
+  line-height: 50px;
+  background: transparent;
+  cursor: pointer;
+}
 
 .task-item:nth-child(odd) {
   background: #f4f4f4;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {

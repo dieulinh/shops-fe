@@ -17,6 +17,11 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/tasks" className="flex items-center space-x-3">
+            {isOpen && <span>Tasks</span>}
+          </Link>
+        </li>
+        <li>
           <Link to="/about" className="flex items-center space-x-3">
 
             {isOpen && <span>About</span>}

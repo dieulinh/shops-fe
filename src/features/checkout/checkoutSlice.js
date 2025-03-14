@@ -9,7 +9,6 @@ const initialState = {
 }
 
 export const generateCheckoutTokenAsync = createAsyncThunk('checkout/generateCheckoutToken', async (checkout_info) => {
-  console.log('checkout info', checkout_info)
   return await generateCheckoutToken(checkout_info)
 })
 

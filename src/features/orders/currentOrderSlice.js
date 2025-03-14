@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchOrder } from './ordersAPI.js'
+import { fetchOrder, updateOrder } from './ordersAPI.js'
 const initialState = {
   currentOrder: null,
   status: 'idle',
@@ -8,6 +8,9 @@ const initialState = {
 
 export const confirmOrderAsync = createAsyncThunk('currentOrder/confirmOrder', async ({payment_intent, payment_intent_client_secret}) => {
   return await fetchOrder({payment_intent, payment_intent_client_secret})
+})
+export const updateOrderAsync = createAsyncThunk('currentOrder/updateOrder', async ({payment_intent, orderParams}) => {
+  return await updateOrder({payment_intent, orderParams})
 })
 
 const currentOrderSlice = createSlice({
@@ -25,6 +28,17 @@ const currentOrderSlice = createSlice({
         state.currentOrder = action.payload.order;
       })
       .addCase(confirmOrderAsync.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message;
+      })
+      .addCase(updateOrderAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateOrderAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.currentOrder = action.payload.order;
+      })
+      .addCase(updateOrderAsync.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message;
       })
