@@ -6,7 +6,7 @@ export const fetchTasks = async () => {
 export const addTask = async ({task}) => {
 
   const response = await axios.post('/tasks',  {task})
-  console.log(response.data)
+
   return response.data
 }
 
