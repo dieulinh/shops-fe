@@ -13,11 +13,12 @@ const JobListing = () => {
   if(status === 'loading') return <div>Loading...</div>
   return (<>
     {jobs.map((job) => {
-      const {id,title,description,location} = job
+      const {id,title,description,location,keywords} = job
       return <div className={'job-post'} key={id}>
         <Link to={`/jobs/${id}`}><h1>{title}</h1></Link>
         <div className={"job-description"}>
           <span>{location}</span>
+
         </div>
         <p>{description}</p>
 

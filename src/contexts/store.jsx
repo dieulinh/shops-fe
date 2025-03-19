@@ -6,6 +6,7 @@ import cartReducer from '@/features/cart/cartSlice.js'
 import checkoutReducer from '@/features/checkout/checkoutSlice.js'
 import currentOrderReducer from '@/features/orders/currentOrderSlice.js'
 import jobsReducer from '@/features/jobs/jobsSlice.js'
+import authReducer from "@/features/auth/authSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     cart: cartReducer,
     checkout: checkoutReducer,
     currentOrder: currentOrderReducer,
-    jobs: jobsReducer
+    jobs: jobsReducer,
+    auth: authReducer
   },
 });
 export default store;

@@ -16,16 +16,19 @@ import {useSelector} from "react-redux";
 import CheckoutForm from "@/components/cart/CheckoutForm.jsx";
 import {Elements} from "@stripe/react-stripe-js";
 import ConfirmOrder from "@/components/orders/ConfirmOrder.jsx";
+import Login from "@/components/auth/Login.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const App = () => {
+  const [token, setToken] = useState(null);
   const [stripeOptions, setStripeOptions] = useState({});
   const stripeToken = useSelector(state => state.checkout.clientSecret);
   const appearance = {
     theme: 'stripe',
   };
+
   useEffect(() => {
     if(!stripeToken) return;
     setStripeOptions({
@@ -36,7 +39,6 @@ const App = () => {
 
   return (
     <>
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/cart" element={<Cart />} />
@@ -45,6 +47,8 @@ const App = () => {
               <CheckoutCart />
             </Elements>
           } />
+
+          <Route path="/login" element={<Login setToken={setToken}/>} />
           <Route path="/orders/confirm" element={<ConfirmOrder />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/about" element={<About />} />

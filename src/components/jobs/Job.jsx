@@ -16,12 +16,16 @@ const Job = () => {
   }, [dispatch]);
   if(status === 'loading') return <div>Loading...</div>
   if(!currentJob) return null
-  const {id, title, location, description} = currentJob
+  const {id, title, location, description, keywords} = currentJob
+  console.log(keywords.split())
   if(status)
   return <>
     <h1>{title}</h1>
     <div className={"job-description"}>
       <span>{location}</span>
+      <div className={"tags"}>
+        <ul className={"tagging"}>{keywords&& keywords.split(',').map((keyword) => (<li key={keyword}>{keyword}</li>))}</ul>
+      </div>
       <div className={'job-content'}>
         <p>{description}</p>
       </div>

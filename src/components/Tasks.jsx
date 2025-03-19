@@ -12,7 +12,7 @@ import {gapi} from "gapi-script";
    const dispatch = useDispatch()
    const [task,setTask] = useState({})
    const [joiners, setJoiners] = useState([])
-   const [userEmail, setUserEmail] = useState('')
+
    useEffect(() => {
      const initClient = () => {
        gapi.client.init({
@@ -39,24 +39,21 @@ import {gapi} from "gapi-script";
 
      })
    };
+   const onClose = () => {
+     selectCurrentTask(null)
+   }
 
    const getUserEmail = () => {
      const authInstance = gapi.auth2.getAuthInstance();
      const user = authInstance.currentUser.get();
      const profile = user.getBasicProfile();
-     console.log(profile)
-     console.log("User email:", profile.getEmail());
-     setUserEmail(profile.getEmail()); // Get and set user email
-
 
      createGoogleMeetEvent(task, '', joiners, profile.getEmail())
    };
    const createGoogleMeetEvent = (title, description, joiners, userEmail) => {
      if (!userEmail) {
-       // alert("User email not found. Please sign in again.");
        return;
      }
-     console.log(joiners)
      let joinerList = joiners.map((joiner) => ({ email: joiner }));
 
      const event = {
@@ -100,9 +97,7 @@ import {gapi} from "gapi-script";
 
    // const tasks = useSelector((state) => state.tasks)
    const { tasks, error, status, newAdded, currentTask } = useSelector((state) => state.tasks);
-   const handleSaveMeeting = (meetingUrl) => {
-     dispatch(addTaskAsync({task: {text: task, meeting_url: meetingUrl, details: joiners.join(',')} }))
-   }
+
    const handleAddJoiners = (e) => {
       setJoiners(e.target.value.split(','))
    }
@@ -148,10 +143,18 @@ import {gapi} from "gapi-script";
       }
       </ul>
       <div className={"task-detail-modal"}>
-        {currentTask && <TaskDetails task={currentTask}/>}
+        {currentTask && <div id="myModal" className={'modal modal-open'}>
+          <div className="modal-content">
+            <span className="close" onClick={onClose}>&times;</span>
+            <h2>Modal Title</h2>
+            <TaskDetails task={currentTask}/>
+          </div>
+        </div>}
+
       </div>
 
     </>
   )
-}
+ }
+
 export default Tasks
