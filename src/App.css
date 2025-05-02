@@ -113,6 +113,10 @@ main {
     padding: 10px;
   }
 }
+.brand-txt {
+  color: #ff00ce;
+  font-size: 3rem;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {

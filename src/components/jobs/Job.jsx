@@ -8,8 +8,12 @@ const Job = () => {
   console.log('job_id', job_id)
   const dispatch = useDispatch();
   const {currentJob, status} = useSelector((state) => state.jobs)
+  const [applied, setApplied] = useState(false)
+  const handleApplyJob = () => {
+    setApplied(true)
+    alert('You have applied for this job')
 
-  // const [job,setJob] = useState({})
+  }
   useEffect(() => {
     dispatch(fetchJobAsync({job_id}))
 
@@ -17,8 +21,8 @@ const Job = () => {
   if(status === 'loading') return <div>Loading...</div>
   if(!currentJob) return null
   const {id, title, location, description, keywords} = currentJob
-  console.log(keywords.split())
-  if(status)
+
+  if(status==='loading') return <div>Loading...</div>
   return <>
     <h1>{title}</h1>
     <div className={"job-description"}>
@@ -31,6 +35,9 @@ const Job = () => {
       </div>
     </div>
     <p>{description}</p>
+    <div className={"job-apply"}>
+      <button onClick={handleApplyJob} className={"btn primary-btn"}>Apply</button>
+    </div>
   </>
 }
 export default Job;

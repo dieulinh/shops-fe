@@ -17,14 +17,18 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/jobs" className="flex items-center space-x-3">
+            {isOpen && <span>Jobs</span>}
+          </Link>
+        </li>
+        <li>
           <Link to="/tasks" className="flex items-center space-x-3">
             {isOpen && <span>Tasks</span>}
           </Link>
         </li>
         <li>
-          <Link to="/about" className="flex items-center space-x-3">
-
-            {isOpen && <span>About</span>}
+          <Link to="/login" className="flex items-center space-x-3">
+            {isOpen && <span>Login</span>}
           </Link>
         </li>
       </ul>

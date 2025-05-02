@@ -17,6 +17,10 @@ import CheckoutForm from "@/components/cart/CheckoutForm.jsx";
 import {Elements} from "@stripe/react-stripe-js";
 import ConfirmOrder from "@/components/orders/ConfirmOrder.jsx";
 import Login from "@/components/auth/Login.jsx";
+import GoogleEventCalendar from "@/components/google_events/Calendar.jsx";
+import Calendar from "@/components/Calendar.jsx";
+import JobListing from "@/components/jobs/JobListing.jsx";
+import Job from "@/components/jobs/Job.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
@@ -49,6 +53,8 @@ const App = () => {
           } />
 
           <Route path="/login" element={<Login setToken={setToken}/>} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/availability" element={<GoogleEventCalendar />} />
           <Route path="/orders/confirm" element={<ConfirmOrder />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/about" element={<About />} />
@@ -56,6 +62,8 @@ const App = () => {
           <Route path={"/products/:id"} element={<ProductDetails />} />
           <Route path={"/products/:id/upload"} element={<ProductPhotoForm />} />
           <Route path={"/products/add"} element={<ProductForm />} />
+          <Route path={"/jobs"} element={<JobListing />} />
+          <Route path={"/jobs/:job_id"} element={<Job />} />
         </Route>
 
       </Routes>

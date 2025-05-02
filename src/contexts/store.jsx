@@ -7,6 +7,7 @@ import checkoutReducer from '@/features/checkout/checkoutSlice.js'
 import currentOrderReducer from '@/features/orders/currentOrderSlice.js'
 import jobsReducer from '@/features/jobs/jobsSlice.js'
 import authReducer from "@/features/auth/authSlice.js";
+import calendarReducer from "@/features/calendars/calendarSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     checkout: checkoutReducer,
     currentOrder: currentOrderReducer,
     jobs: jobsReducer,
-    auth: authReducer
+    auth: authReducer,
+    calendar: calendarReducer
   },
 });
 export default store;

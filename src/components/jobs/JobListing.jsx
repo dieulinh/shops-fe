@@ -8,7 +8,7 @@ const JobListing = () => {
   const dispatch = useDispatch();
   const {jobs, status} = useSelector((state) => state.jobs)
   useEffect(() => {
-    dispatch(fetchJobsAsync({page: 1,q: ''}))
+    dispatch(fetchJobsAsync({page: 1, q: ''}))
   }, [dispatch]);
   if(status === 'loading') return <div>Loading...</div>
   return (<>
