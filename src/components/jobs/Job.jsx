@@ -2,16 +2,22 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {fetchJobAsync} from "@/features/jobs/jobsSlice.js";
+import NewJobApplication from "@/components/jobs/NewJobApplication.jsx";
 
 const Job = () => {
   const {job_id} = useParams()
+  const [newJobApplication, setNewJobApplication] = useState(false)
   console.log('job_id', job_id)
   const dispatch = useDispatch();
   const {currentJob, status} = useSelector((state) => state.jobs)
   const [applied, setApplied] = useState(false)
-  const handleApplyJob = () => {
-    setApplied(true)
-    alert('You have applied for this job')
+  const onClose = () => {
+    setNewJobApplication(false)
+  }
+  const handleShowForm = (isOpen=true) => {
+    setApplied(isOpen)
+
+    setNewJobApplication(isOpen)
 
   }
   useEffect(() => {
@@ -20,24 +26,28 @@ const Job = () => {
   }, [dispatch]);
   if(status === 'loading') return <div>Loading...</div>
   if(!currentJob) return null
-  const {id, title, location, description, keywords} = currentJob
+  const {id, title, location, description, company_name} = currentJob
 
   if(status==='loading') return <div>Loading...</div>
   return <>
-    <h1>{title}</h1>
+    <h1>{title} - { company_name}</h1>
     <div className={"job-description"}>
       <span>{location}</span>
       <div className={"tags"}>
-        <ul className={"tagging"}>{keywords&& keywords.split(',').map((keyword) => (<li key={keyword}>{keyword}</li>))}</ul>
+        <ul className={"tagging"}></ul>
       </div>
       <div className={'job-content'}>
         <p>{description}</p>
       </div>
     </div>
-    <p>{description}</p>
+
     <div className={"job-apply"}>
-      <button onClick={handleApplyJob} className={"btn primary-btn"}>Apply</button>
+      <button onClick={handleShowForm} className={"btn primary-btn"}>Apply</button>
     </div>
+    {newJobApplication &&  <div id="myModal" className={'modal modal-open'}>
+      <div className="modal-content">
+        <span className="close" onClick={onClose}>&times;</span>
+      <NewJobApplication jobId={job_id} appliedsuccess={onClose}/> </div></div>}
   </>
 }
 export default Job;

@@ -21,6 +21,8 @@ import GoogleEventCalendar from "@/components/google_events/Calendar.jsx";
 import Calendar from "@/components/Calendar.jsx";
 import JobListing from "@/components/jobs/JobListing.jsx";
 import Job from "@/components/jobs/Job.jsx";
+import {Dashboard} from "@/components/dashboard/Dashboard.jsx";
+import Logout from "@/components/auth/Logout.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
@@ -62,8 +64,20 @@ const App = () => {
           <Route path={"/products/:id"} element={<ProductDetails />} />
           <Route path={"/products/:id/upload"} element={<ProductPhotoForm />} />
           <Route path={"/products/add"} element={<ProductForm />} />
+
           <Route path={"/jobs"} element={<JobListing />} />
           <Route path={"/jobs/:job_id"} element={<Job />} />
+
+          <Route path={"/logout"} element={<Logout />} />
+          <Route
+            path="/dashboard"
+            element={
+
+                <Dashboard />
+
+            }
+          />
+
         </Route>
 
       </Routes>

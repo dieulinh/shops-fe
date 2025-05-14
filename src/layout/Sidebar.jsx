@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
-import { Home, Info, Menu, Store } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const user = localStorage.getItem('access_token');
+  console.log('user', user)
+  // const {auth} = useSelector((state) => state.auth);
+  // console.log('auth',auth)
+  const userData = localStorage.getItem('userData')||{};
 
   return (
     <div className={`sidebar-container ${isOpen ? "w-100" : "w-20"} transition-all`}>
@@ -27,8 +34,16 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/login" className="flex items-center space-x-3">
+          {!user && ( <Link to="/login" className="flex items-center space-x-3">
             {isOpen && <span>Login</span>}
+          </Link>)}
+          {user && ( <Link to="/logout" className="flex items-center space-x-3">
+            {isOpen && <span>Logout</span>}
+          </Link>)}
+        </li>
+        <li>
+          <Link to="/dashboard" className="flex items-center space-x-3">
+            {isOpen && <span>dashboard</span>}
           </Link>
         </li>
       </ul>

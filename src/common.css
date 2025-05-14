@@ -32,7 +32,7 @@ button,input,select {
         width: 100%
     }
     input, select, textarea {
-        width: 100%;
+
         padding: 0.5rem;
         margin: 0.5rem 0;
         border: 1px solid #ccc;
@@ -90,7 +90,7 @@ button,input,select {
 /* Modal Content */
 .modal-content {
     background-color: white;
-    margin: 15% auto;
+    margin: 15px auto;
     padding: 20px;
     border-radius: 8px;
     width: 50%;
@@ -135,4 +135,8 @@ button,input,select {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -10,3 +10,12 @@ export const fetchJob = async ({job_id}) => {
 
   return response.data
 }
+export const sendJobApplication = async (formData) => {
+
+
+  const response =  await axios.post(`/job_applications`, formData,
+    {headers: {'Content-Type': 'multipart/form-data'
+  }})
+
+  return response.data
+}
