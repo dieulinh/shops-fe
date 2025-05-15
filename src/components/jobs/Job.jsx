@@ -32,7 +32,7 @@ const Job = () => {
   return <>
     <h1>{title} - { company_name}</h1>
     <div className={"job-description"}>
-      <span>{location}</span>
+      <p>Working location <span>{location}</span></p>
       <div className={"tags"}>
         <ul className={"tagging"}></ul>
       </div>

@@ -5,6 +5,11 @@ export const fetchJobs = async ({page,query}) => {
 
   return response.data
 }
+export const fetchJobApplications = async ({page,query}) => {
+  const response = await axios.get(`/job_applications?page=${page}&q=${query}`);
+
+  return response.data
+}
 export const fetchJob = async ({job_id}) => {
   const response =  await axios.get(`/job_listing/${job_id}`);
 
