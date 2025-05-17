@@ -114,10 +114,29 @@ main {
   }
 }
 .brand-txt {
-  color: #ff00ce;
+  color: #fa5c92;
   font-size: 3rem;
+  font-weight: 600;
 }
-
+.blog-editor > .quill {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+.ql-container {
+  min-height: 200px;
+}
+.product-headline {
+  font-size: 2rem;
+  color: #ff00ce;
+}
+.product-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #0056b3;
+}
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;

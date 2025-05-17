@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 
 const NewJobApplication = ({jobId,appliedsuccess}) => {
   const {auth} = useSelector(state => state.auth)
-  console.log('job_id', jobId)
+
   const {status} = useSelector(state => state.jobs)
   const dispatch = useDispatch();
   const [name, setName] = useState('')

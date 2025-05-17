@@ -13,16 +13,20 @@ import CheckoutCart from "@/components/cart/CheckoutCart.jsx";
 import {loadStripe} from "@stripe/stripe-js";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import CheckoutForm from "@/components/cart/CheckoutForm.jsx";
+
 import {Elements} from "@stripe/react-stripe-js";
 import ConfirmOrder from "@/components/orders/ConfirmOrder.jsx";
 import Login from "@/components/auth/Login.jsx";
 import GoogleEventCalendar from "@/components/google_events/Calendar.jsx";
 import Calendar from "@/components/Calendar.jsx";
 import JobListing from "@/components/jobs/JobListing.jsx";
+import JobApplications from "@/components/jobs/JobApplications.jsx";
+import JobApplication from "@/components/jobs/JobApplication.jsx";
 import Job from "@/components/jobs/Job.jsx";
 import {Dashboard} from "@/components/dashboard/Dashboard.jsx";
 import Logout from "@/components/auth/Logout.jsx";
+import Posts from "@/components/blogs/Posts.jsx";
+import NewPost from "@/components/blogs/NewPost.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
@@ -66,8 +70,11 @@ const App = () => {
           <Route path={"/products/add"} element={<ProductForm />} />
 
           <Route path={"/jobs"} element={<JobListing />} />
+          <Route path={"/job_applications"} element={<JobApplications />} />
+          <Route path={"/job_applications/:job_application_id"} element={<JobApplication />} />
           <Route path={"/jobs/:job_id"} element={<Job />} />
-
+          <Route path={"/blogs"} element={<Posts />} />
+          <Route path={"/blogs/new"} element={<NewPost />} />
           <Route path={"/logout"} element={<Logout />} />
           <Route
             path="/dashboard"

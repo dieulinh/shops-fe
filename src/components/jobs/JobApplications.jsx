@@ -24,14 +24,22 @@ const JobListing = () => {
         <Pagination totalPages={total_pages} page={page} onPageChange={setPage}/>
       </div>
       {jobapplications.map((job) => {
-        const {id, name, email, cover_letter,resume_url} = job
+        const {id, name, email, cover_letter,resume_url, created_at} = job
+        const createdAt = (new Date(created_at)).toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        });
         return <div className={'job-post'} key={id}>
-          <Link to={`/jobs/${id}`}><h1>{name}</h1></Link>
+          <Link to={`/job_applications/${id}`}><h1>{name} </h1></Link>
           <hr />
           <div className={"job-description"}>
-            <p>Resume: {resume_url&&<a href={resume_url} target="_blank" rel="noopener noreferrer">resume</a>}</p>
+            <div>Resume: {resume_url&&<a href={resume_url} target="_blank" rel="noopener noreferrer">resume</a>} <span className={"flex-right"} >{createdAt}</span></div>
             <p>Cover letter</p>
-            <p>{cover_letter}</p>
+            <p><strong>{cover_letter}</strong></p>
             <span>Name: {name}</span>
           </div>
         </div>

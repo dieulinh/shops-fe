@@ -24,6 +24,11 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/job_applications" className="flex items-center space-x-3">
+            {isOpen && <span>applications</span>}
+          </Link>
+        </li>
+        <li>
           <Link to="/jobs" className="flex items-center space-x-3">
             {isOpen && <span>Jobs</span>}
           </Link>
@@ -34,10 +39,10 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          {!user && ( <Link to="/login" className="flex items-center space-x-3">
+          {!user && (<Link to="/login" className="flex items-center space-x-3">
             {isOpen && <span>Login</span>}
           </Link>)}
-          {user && ( <Link to="/logout" className="flex items-center space-x-3">
+          {user && (<Link to="/logout" className="flex items-center space-x-3">
             {isOpen && <span>Logout</span>}
           </Link>)}
         </li>

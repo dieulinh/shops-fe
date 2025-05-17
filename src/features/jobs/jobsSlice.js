@@ -1,10 +1,11 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {fetchJobs, fetchJob,fetchJobApplications, sendJobApplication} from "@/features/jobs/jobsAPI.js";
+import {fetchJobs, fetchJob,fetchJobApplications,fetchJobApplication, sendJobApplication} from "@/features/jobs/jobsAPI.js";
 
 
 const initialState = {
   jobs: [],
   jobapplications: [],
+  currentJobApplication: {},
   total_pages: 1,
   currentJob: null,
   job: null,
@@ -16,6 +17,9 @@ export const fetchJobsAsync = createAsyncThunk('jobs/fetchJobs', async({page, qu
 })
 export const fetchJobApplicationsAsync = createAsyncThunk('jobs/fetchJobApplications', async({page, query}) => {
   return await fetchJobApplications({page, query})
+})
+export const fetchJobApplicationAsync = createAsyncThunk('jobs/fetchJobApplication', async({id}) => {
+  return await fetchJobApplication({id})
 })
 export const fetchJobAsync = createAsyncThunk('jobs/fetchJob', async({job_id}) => {
   return await fetchJob({job_id})
@@ -52,6 +56,17 @@ const jobsSlice = createSlice({
       state.status = 'failed'
       state.error = action.error.message
     })
+      .addCase(fetchJobApplicationAsync.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchJobApplicationAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.currentJobApplication = action.payload.job_application
+      })
+      .addCase(fetchJobApplicationAsync.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
       .addCase(sendJobApplicationAsync.pending, (state, action) => {
         state.status = 'loading'
       })
