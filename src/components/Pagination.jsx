@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-function Pagination({ totalPages, onPageChange }) {
-  const [currentPage, setCurrentPage] = useState(1);
+function Pagination({ totalPages, page, onPageChange }) {
+  const [currentPage, setCurrentPage] = useState(page);
 
   const handlePageClick = (page) => {
-    setCurrentPage(page);
+
     onPageChange(page);
+    setCurrentPage(page);
   };
 
   const handlePrev = () => {
@@ -26,7 +27,7 @@ function Pagination({ totalPages, onPageChange }) {
       pages.push(
         <button
           key={i}
-          onClick={() => handlePageClick(i)}
+          onClick={() =>handlePageClick(i)}
           style={{
             margin: '0 4px',
             fontWeight: currentPage === i ? 'bold' : 'normal',

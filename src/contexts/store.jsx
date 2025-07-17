@@ -9,9 +9,12 @@ import jobsReducer from '@/features/jobs/jobsSlice.js'
 import authReducer from "@/features/auth/authSlice.js";
 import calendarReducer from "@/features/calendars/calendarSlice.js";
 import postsReducer from "@/features/blogs/postsSlice.js";
+import jobApplicationReducer from "@/features/jobs/jobApplicationsSlice.js";
+import customersSlice from "@/features/cusomers/customersSlice.js";
 
 const store = configureStore({
   reducer: {
+    jobApplications: jobApplicationReducer,
     tasks: tasksReducer,
     products: productsReducer,
     product: productReducer,
@@ -21,7 +24,8 @@ const store = configureStore({
     jobs: jobsReducer,
     auth: authReducer,
     calendar: calendarReducer,
-    posts: postsReducer
+    posts: postsReducer,
+    customers: customersSlice
 
   },
 });

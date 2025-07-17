@@ -11,7 +11,7 @@ const JobListing = () => {
   const {jobapplications, status, total_pages} = useSelector((state) => state.jobs)
   useEffect(() => {
     dispatch(fetchJobApplicationsAsync({page: page, q: ''}))
-  }, [dispatch, page]);
+  }, [dispatch, page, total_pages]);
   if(status === 'loading') return <div>Loading...</div>
   return (<>
     <div className={"flex-full search-bar"}>
@@ -34,14 +34,15 @@ const JobListing = () => {
           hour12: true,
         });
         return <div className={'job-post'} key={id}>
-          <Link to={`/job_applications/${id}`}><h1>{name} </h1></Link>
-          <hr />
+          <Link to={`/job_applications/${id}`}><h1>{name} {email} </h1></Link>
+
           <div className={"job-description"}>
             <div>Resume: {resume_url&&<a href={resume_url} target="_blank" rel="noopener noreferrer">resume</a>} <span className={"flex-right"} >{createdAt}</span></div>
             <p>Cover letter</p>
             <p><strong>{cover_letter}</strong></p>
             <span>Name: {name}</span>
           </div>
+          <hr />
         </div>
       }) }
     </div>

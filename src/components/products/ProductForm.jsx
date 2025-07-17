@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import styles from "./ProductForm.module.css";
 import {addProductAsync} from "@/features/products/productsSlice.js";
 
-function ProductForm() {
+function ProductForm({handleSave}) {
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     name: '',
@@ -23,6 +23,14 @@ function ProductForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProductAsync({product: formData}))
+    setFormData({
+      name: '',
+      price: '',
+      description: '',
+      stock: null,
+      category: ''
+    })
+    handleSave()
   }
 
   return <div className={"w-100"}>

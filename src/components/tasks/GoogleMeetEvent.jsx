@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const API_KEY = process.env.GOOGLE_API_KEY;
 const SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email";
 
-const GoogleMeetEvent = ({title,description='',saveMeeting}) => {
+const GoogleMeetEvent = ({title,description,joiners, saveMeeting}) => {
   const [userEmail, setUserEmail] = useState("");
+
 
   useEffect(() => {
     const initClient = () => {
@@ -25,29 +26,35 @@ const GoogleMeetEvent = ({title,description='',saveMeeting}) => {
     gapi.load("client:auth2", initClient);
   }, []);
 
+
   const handleAuth = () => {
     gapi.auth2.getAuthInstance().signIn().then(() => {
+
       getUserEmail();
       createGoogleMeetEvent();
-    });
+
+    })
   };
 
   const getUserEmail = () => {
     const authInstance = gapi.auth2.getAuthInstance();
     const user = authInstance.currentUser.get();
     const profile = user.getBasicProfile();
+    console.log(profile)
     console.log("User email:", profile.getEmail());
     setUserEmail(profile.getEmail()); // Get and set user email
   };
   const createGoogleMeetEvent = () => {
     if (!userEmail) {
-      alert("User email not found. Please sign in again.");
+      // alert("User email not found. Please sign in again.");
       return;
     }
+    console.log(joiners)
+    let joinerList = joiners.map((joiner) => ({ email: joiner }));
 
     const event = {
       summary: title,
-      description: description,
+      description: description||'',
       start: {
         dateTime: new Date(Date.now() +24*3600000).toISOString(), // Meeting starts 1day from now
         timeZone: "America/Los_Angeles",
@@ -56,7 +63,7 @@ const GoogleMeetEvent = ({title,description='',saveMeeting}) => {
         dateTime: new Date(Date.now() + +24*3600000 + 3600000).toISOString(), // Ends in 1 hour
         timeZone: "America/Los_Angeles",
       },
-      attendees: [{ email: userEmail }], // Use the authenticated user's email
+      attendees: [...joinerList, { email: userEmail } ], // Use the authenticated user's email
       conferenceData: {
         createRequest: {
           requestId: "meeting-" + new Date().getTime(),

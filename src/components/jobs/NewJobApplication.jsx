@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendJobApplicationAsync } from "@/features/jobs/jobsSlice.js";
 import {useEffect, useState} from "react";
 
-
-
 const NewJobApplication = ({jobId,appliedsuccess}) => {
   const {auth} = useSelector(state => state.auth)
 

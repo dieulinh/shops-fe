@@ -39,6 +39,10 @@ button,input,select {
         border-radius: 4px;
     }
 }
+.warning {
+    color: red;
+    font-size: 0.9rem;
+}
 
 .primary-button {
     background-color: #007bff;
@@ -139,4 +143,8 @@ button,input,select {
 .flex-right {
     display: flex;
     justify-content: flex-end;
+}
+.flex-full {
+    display: flex;
+    width: 100%;
 }

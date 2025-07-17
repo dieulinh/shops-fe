@@ -7,9 +7,14 @@ import { useSelector } from "react-redux";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const user = localStorage.getItem('access_token');
-  console.log('user', user)
+
   // const {auth} = useSelector((state) => state.auth);
   // console.log('auth',auth)
+  console.log('1');
+  setTimeout(() => console.info('2'), 5);
+  console.log('3');
+  setTimeout(() => console.info('4'), 0);
+  console.log('5');
   const userData = localStorage.getItem('userData')||{};
 
   return (
@@ -25,7 +30,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/job_applications" className="flex items-center space-x-3">
-            {isOpen && <span>applications</span>}
+            {isOpen && <span>Applications</span>}
           </Link>
         </li>
         <li>
@@ -48,7 +53,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/dashboard" className="flex items-center space-x-3">
-            {isOpen && <span>dashboard</span>}
+            {isOpen && <span>Main</span>}
           </Link>
         </li>
       </ul>

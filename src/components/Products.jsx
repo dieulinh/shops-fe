@@ -7,8 +7,8 @@ function Products(){
   const dispatch = useDispatch();
   const { products, error, status } = useSelector((state) => state.products)
   const saveProduct = (e) => {
+    dispatch(fetchProductsAsync())
 
-    dispatch(addProduct(state,))
   }
   useEffect(() => {
     if(status === 'idle') {

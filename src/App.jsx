@@ -27,6 +27,8 @@ import {Dashboard} from "@/components/dashboard/Dashboard.jsx";
 import Logout from "@/components/auth/Logout.jsx";
 import Posts from "@/components/blogs/Posts.jsx";
 import NewPost from "@/components/blogs/NewPost.jsx";
+import CustomerLogin from "@/components/customers/Login.jsx";
+import CustomerSignUp from "@/components/customers/SignUp.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
@@ -76,6 +78,10 @@ const App = () => {
           <Route path={"/blogs"} element={<Posts />} />
           <Route path={"/blogs/new"} element={<NewPost />} />
           <Route path={"/logout"} element={<Logout />} />
+
+          {/*Customers*/}
+          <Route path={"/customer/login"} element={<CustomerLogin />} />
+          <Route path={"/customer/sign_up"} element={<CustomerSignUp />} />
           <Route
             path="/dashboard"
             element={

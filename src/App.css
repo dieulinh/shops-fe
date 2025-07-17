@@ -1,5 +1,6 @@
 
 #root {
+  height: 100vh;
   margin: 0;
   padding: 2rem;
   width: 100%;
@@ -126,6 +127,17 @@ main {
 }
 .ql-container {
   min-height: 200px;
+}
+.customer-login {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.customer-login .login-btn {
+  width: 100%;
+  color: #0056b3;
 }
 .product-headline {
   font-size: 2rem;
