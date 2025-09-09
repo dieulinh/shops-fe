@@ -6,11 +6,12 @@ const initialState = {
   products: [],
   currentProduct: null,
   status: 'idle',
-  error: null
+  error: null,
+  total_pages: 1
 }
 
-export const fetchProductsAsync = createAsyncThunk('products/fetchProducts', async () => {
-  return await fetchProducts();
+export const fetchProductsAsync = createAsyncThunk('products/fetchProducts', async ({page,query}) => {
+  return await fetchProducts({page, query});
 })
 
 export const addProductAsync = createAsyncThunk('products/addProduct', async(product) => {
@@ -32,6 +33,7 @@ const productsSlice = createSlice({
       .addCase(fetchProductsAsync.fulfilled, (state, action) => {
         state.status = 'succeeded'
         state.products = action.payload.products;
+        state.total_pages = action.payload.total_pages;
       })
       .addCase(fetchProductsAsync.rejected, (state, action) => {
         state.status = 'failed'

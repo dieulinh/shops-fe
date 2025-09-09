@@ -28,21 +28,7 @@ const Sidebar = () => {
             {isOpen && <span>Products</span>}
           </Link>
         </li>
-        <li>
-          <Link to="/job_applications" className="flex items-center space-x-3">
-            {isOpen && <span>Applications</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/jobs" className="flex items-center space-x-3">
-            {isOpen && <span>Jobs</span>}
-          </Link>
-        </li>
-        <li>
-          <Link to="/tasks" className="flex items-center space-x-3">
-            {isOpen && <span>Tasks</span>}
-          </Link>
-        </li>
+
         <li>
           {!user && (<Link to="/login" className="flex items-center space-x-3">
             {isOpen && <span>Login</span>}
@@ -53,7 +39,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/dashboard" className="flex items-center space-x-3">
-            {isOpen && <span>Main</span>}
+            {isOpen && <span>Settings</span>}
           </Link>
         </li>
       </ul>

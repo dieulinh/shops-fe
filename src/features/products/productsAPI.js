@@ -1,6 +1,6 @@
 import axios from '@/api/axiosInstance.js'
-export const fetchProducts = async () => {
-  const response = await axios.get(`/products`);
+export const fetchProducts = async ({page,query}) => {
+  const response = await axios.get(`/products?page=${page}&q=${encodeURIComponent(query ?? "")}`);
 
   return response.data
 }

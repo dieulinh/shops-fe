@@ -81,10 +81,7 @@ h1 {
 main {
   width: 100%;
 }
-.product-view {
-  display: flex;
-  justify-content: space-between;
-}
+
 .photo-gallery {
   max-width: 50% ;
 }
@@ -139,16 +136,52 @@ main {
   width: 100%;
   color: #0056b3;
 }
-.product-headline {
-  font-size: 2rem;
-  color: #ff00ce;
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
 }
-.product-preview {
+.product-price {
+  font-size: 1.5rem;
+  color: #0072ff;
+  font-weight: bold;
+}
+.product-view {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  color: #0056b3;
 }
+.product-headline {
+  font-size: 2rem;
+  color: #b33f77;
+}
+.product-preview {
+  color: #0056b3; /* kept for compatibility; component uses CSS module now */
+}
+
+/* Products toolbar */
+.products-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.products-search {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+}
+.products-search:focus {
+  outline: none;
+  border-color: #9ca3af;
+}
+.empty-state {
+  padding: 28px 8px;
+  text-align: center;
+  color: #6b7280;
+}
+.product-card-skeleton { height: 260px; border-radius: 12px; }
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
