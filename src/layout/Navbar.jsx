@@ -1,4 +1,4 @@
-import { UserCircle,ShoppingCart } from "lucide-react";
+import { UserCircle } from "lucide-react";
 import CartIcon from "@/components/cart/CartIcon.jsx";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,10 @@ const Navbar = () => {
     <nav className="flex header-nav space-between">
       <h1 className="font-bold"><Link to={'/'} className={"brand-txt"}>Lynn's Homestead</Link></h1>
       <div className="flex user-nav">
-        <Link to={'/cart'}><ShoppingCart size={24} />
-        <CartIcon /></Link>
-        <UserCircle size={24} />
+        <Link to={'/cart'}>
+          <CartIcon size={36} />
+        </Link>
+        <UserCircle size={36} />
       </div>
     </nav>
   );

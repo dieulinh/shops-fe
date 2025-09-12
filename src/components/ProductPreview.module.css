@@ -50,6 +50,21 @@
     font-weight: 700;
 }
 
+/* Actions under each card */
+.actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 14px 14px;
+}
+.btn {
+    appearance: none;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
 /* Skeleton placeholder for loading state */
 .skeleton, .product-card-skeleton {
     height: 220px;

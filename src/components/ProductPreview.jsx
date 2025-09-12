@@ -1,19 +1,32 @@
 
 import styles from "./ProductPreview.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/features/cart/cartSlice.js";
+import PropTypes from "prop-types";
+import { formatPrice } from "@/utils/utils.js";
 
-function formatPrice(v, currency = "CAD") {
-  if (v == null || isNaN(Number(v))) return "";
-  try {
-    return new Intl.NumberFormat(undefined, { style: "currency", currency }).format(Number(v));
-  } catch {
-    return `CA$ ${v}`;
-  }
-}
+// formatPrice extracted to utils for reuse
 
 function ProductPreview({ item }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const img = item?.image_url || item?.imageUrl || item?.photo ||
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80&auto=format&fit=crop";
+
+  const handleAddToCart = (e) => {
+    // Prevent the card link navigation when clicking the button
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    dispatch(addToCart(item));
+  };
+
+  const handleBuyNow = (e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    dispatch(addToCart(item));
+    navigate('/cart');
+  };
 
   return (
     <div className={styles.card}>
@@ -28,8 +41,23 @@ function ProductPreview({ item }) {
           </div>
         </div>
       </Link>
+      <div className={styles.actions}>
+        <button className={`${styles.btn} add-to-cart`} onClick={handleAddToCart}>Add to cart</button>
+        <button className={`${styles.btn} buy-now`} onClick={handleBuyNow}>Buy now</button>
+      </div>
     </div>
   );
 }
 
 export default ProductPreview
+
+ProductPreview.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    image_url: PropTypes.string,
+    imageUrl: PropTypes.string,
+    photo: PropTypes.string,
+  }).isRequired,
+}

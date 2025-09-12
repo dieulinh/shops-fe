@@ -16,7 +16,7 @@ function Products(){
   // fetch when page or query changes
   useEffect(() => {
     dispatch(fetchProductsAsync({ page, query }))
-  }, [page, query]);
+  }, [dispatch, page, query]);
 
   // debounce search -> query
   useEffect(() => {
@@ -26,11 +26,7 @@ function Products(){
     }, 350)
     return () => clearTimeout(t)
   }, [search])
-  // useEffect(() => {
-  //   if(status === 'idle') {
-  //     dispatch(fetchProductsAsync())
-  //   }
-  // },[dispatch,status])
+
 
   const isLoading = status === 'loading'
 
