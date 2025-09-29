@@ -29,6 +29,9 @@ import Posts from "@/components/blogs/Posts.jsx";
 import NewPost from "@/components/blogs/NewPost.jsx";
 import CustomerLogin from "@/components/customers/Login.jsx";
 import CustomerSignUp from "@/components/customers/SignUp.jsx";
+import YoutubePlayer from "@/components/media/YoutubePlayer.jsx";
+import Recipes from "@/components/recipes/Recipes.jsx";
+import Recipe from "@/components/recipes/Recipe.jsx";
 
 
 const About = () =>(<div className={"container"}> <h1>About Page</h1></div>);
@@ -66,6 +69,9 @@ const App = () => {
           <Route path="/orders/confirm" element={<ConfirmOrder />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/about" element={<About />} />
+          <Route path="/youtube" element={<YoutubePlayer />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<Recipe />} />
           <Route path={"/products"} element={<Products />} />
           <Route path={"/products/:id"} element={<ProductDetails />} />
           <Route path={"/products/:id/upload"} element={<ProductPhotoForm />} />

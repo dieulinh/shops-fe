@@ -28,20 +28,22 @@ const Sidebar = () => {
             {isOpen && <span>Products</span>}
           </Link>
         </li>
+        <li>
+          <Link to="/recipes" className="flex items-center space-x-3">
+            {isOpen && <span>Recipes</span>}
+          </Link>
+        </li>
 
         <li>
           {!user && (<Link to="/login" className="flex items-center space-x-3">
             {isOpen && <span>Login</span>}
           </Link>)}
+
           {user && (<Link to="/logout" className="flex items-center space-x-3">
             {isOpen && <span>Logout</span>}
           </Link>)}
         </li>
-        <li>
-          <Link to="/dashboard" className="flex items-center space-x-3">
-            {isOpen && <span>Settings</span>}
-          </Link>
-        </li>
+        
       </ul>
     </div>
   );

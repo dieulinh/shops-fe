@@ -11,6 +11,8 @@ import calendarReducer from "@/features/calendars/calendarSlice.js";
 import postsReducer from "@/features/blogs/postsSlice.js";
 import jobApplicationReducer from "@/features/jobs/jobApplicationsSlice.js";
 import customersSlice from "@/features/cusomers/customersSlice.js";
+import recipesReducer from "@/features/recipes/recipesSlice.js";
+import recipeReducer from "@/features/recipes/recipeSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -25,7 +27,9 @@ const store = configureStore({
     auth: authReducer,
     calendar: calendarReducer,
     posts: postsReducer,
-    customers: customersSlice
+    customers: customersSlice,
+    recipes: recipesReducer,
+    recipe: recipeReducer
 
   },
 });

@@ -87,7 +87,14 @@ main {
 }
 .cart-item {
   display: grid;
-  grid-template-columns: 30% 30% 20% 1fr;
+  grid-template-columns: 1.5fr 140px 120px 50px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff10;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  margin-bottom: 14px;
 }
 .remove-btn {
   background: red;
@@ -182,6 +189,17 @@ main {
   color: #6b7280;
 }
 .product-card-skeleton { height: 260px; border-radius: 12px; }
+/* Shimmer effect for product skeletons */
+.product-card-skeleton {
+  background: linear-gradient(90deg, #f2f4f7 25%, #eceff3 37%, #f2f4f7 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -192,4 +210,34 @@ main {
   .product-view {
     flex-direction: column;
   }
+  .cart-item {
+    grid-template-columns: 1fr 90px 70px 40px;
+    padding: 10px 12px;
+  }
+}
+
+/* Cart page layout */
+.cart-page {
+  padding: 32px 32px 48px;
+  box-sizing: border-box;
+}
+.cart-title {
+  font-size: 2.4rem;
+  margin: 0 0 6px;
+  color: #1f2937;
+}
+.cart-subtitle {
+  margin: 0 0 28px;
+  font-size: 1rem;
+  color: #6b7280;
+}
+.cart-items {
+  width: 100%;
+  margin-bottom: 28px;
+}
+.cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
