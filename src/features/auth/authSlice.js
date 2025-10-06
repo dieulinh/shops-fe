@@ -13,10 +13,10 @@ const initialState = {
 };
 
 export const login = createAsyncThunk(
-  'auth/login',
+  'auth/ ',
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await loginUser({ credentials });
+      const data = await loginUser(credentials);
       return data; // expecting { token, user }
     } catch (err) {
       const message = err?.response?.data?.message || err.message || 'Login failed';
