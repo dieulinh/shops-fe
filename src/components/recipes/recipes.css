@@ -26,6 +26,15 @@
   padding: 0;
 }
 
+/* Toolbar */
+.recipes-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 10px 0 18px; }
+.recipe-search { flex: 1 1 280px; max-width: 520px; padding: 10px 12px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff; font: inherit; }
+.recipe-search:focus { outline: 2px solid #a78bfa; border-color: #7c3aed; background: #fff; }
+.recipes-pager { display: inline-flex; align-items: center; gap: 10px; }
+.pager-btn { padding: 8px 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; cursor: pointer; font-weight: 600; }
+.pager-btn[disabled] { opacity: .5; cursor: not-allowed; }
+.pager-status { font-size: .85rem; color: #475569; }
+
 .recipe-card {
   position: relative;
   list-style: none;
@@ -98,4 +107,29 @@
   .instruction-steps li { background: #1f242c; border-color: #2a313b; }
   .recipe-hero { background: radial-gradient(circle at 18% 20%,#2d1f27 0%,#14181f 72%); }
   .recipe-meta-pill { background: #334155; }
+}
+
+/* Comments */
+.recipe-comments { margin-top: 52px; background: #fff; padding: 26px 30px 34px; border-radius: 28px; box-shadow: 0 4px 18px -2px rgba(0,0,0,0.05), 0 8px 32px -12px rgba(0,0,0,0.08); }
+.recipe-comments h2 { margin-top: 0; font-size: 1rem; letter-spacing: .8px; font-weight: 700; text-transform: uppercase; color: #6b5b95; }
+.comment-list { list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; gap: 18px; }
+.comment-item { padding: 14px 18px 16px; border: 1px solid #eceff3; background: #fafbfd; border-radius: 18px; position: relative; }
+.comment-meta { font-size: .7rem; letter-spacing: .5px; text-transform: uppercase; display: flex; gap: 10px; color: #64748b; margin-bottom: 6px; }
+.comment-author { color: #334155; }
+.comment-body { margin: 0; font-size: .9rem; line-height: 1.45; color: #1e293b; white-space: pre-wrap; }
+.comment-form { display: flex; flex-direction: column; gap: 10px; }
+.comment-form label { font-size: .75rem; text-transform: uppercase; letter-spacing: .6px; font-weight: 600; color: #64748b; }
+.comment-form textarea { font: inherit; padding: 12px 14px; border-radius: 16px; resize: vertical; min-height: 90px; border: 1px solid #d5dae1; background: #f8fafc; line-height: 1.4; }
+.comment-form textarea:focus { outline: 2px solid #818cf8; border-color: #6366f1; background: #fff; }
+.comment-form-actions { display: flex; justify-content: flex-end; }
+.comment-error { color: #dc2626; font-size: .8rem; margin: 4px 0 0; }
+.comment-success { color: #16a34a; font-size: .8rem; margin: 4px 0 0; }
+.comment-hint, .comment-login-hint { font-size: .85rem; color: #64748b; }
+
+@media (prefers-color-scheme: dark) {
+  .recipe-comments { background: #1f242c; box-shadow: 0 4px 18px -2px rgba(0,0,0,0.6); }
+  .comment-item { background: #1f242c; border-color: #2a313b; }
+  .comment-body { color: #e2e8f0; }
+  .comment-form textarea { background: #1e2530; border-color: #2a313b; color: #e2e8f0; }
+  .comment-form textarea:focus { background: #14181f; }
 }

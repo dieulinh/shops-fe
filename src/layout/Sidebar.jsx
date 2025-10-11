@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const user = localStorage.getItem('access_token');
+  const token = localStorage.getItem('authToken');
+  const { auth } = useSelector(state => state.auth);
 
   // const {auth} = useSelector((state) => state.auth);
   // console.log('auth',auth)
@@ -35,12 +36,12 @@ const Sidebar = () => {
         </li>
 
         <li>
-          {!user && (<Link to="/login" className="flex items-center space-x-3">
+          {!token && (<Link to="/login" className="flex items-center space-x-3">
             {isOpen && <span>Login</span>}
           </Link>)}
 
-          {user && (<Link to="/logout" className="flex items-center space-x-3">
-            {isOpen && <span>Logout</span>}
+          {token && (<Link to="/logout" className="flex items-center space-x-3">
+            {isOpen && <span>{auth?.email ? 'Logout (' + auth.email + ')' : 'Logout'}</span>}
           </Link>)}
         </li>
         
