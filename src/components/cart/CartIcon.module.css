@@ -1,0 +1,43 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.icon {
+  color: inherit;
+  transition: transform 120ms ease;
+}
+
+.wrapper:hover .icon {
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: -11px;
+  right: -16px;
+  background: #ef4444; /* red-500 */
+  color: white;
+  border-radius: 9999px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--badge-ring, #ffffff);
+}
+
+.pop {
+  animation: pop 250ms ease-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}

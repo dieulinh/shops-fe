@@ -19,16 +19,29 @@ export default function Cart() {
     dispatch(removeFromCart({id: itemId}))
   }
 
-  return <>
-    <h1>Checkout cart with these items:</h1>
-    {cart.map((item, index) => {return (
-      <div className={"cart-item"} key={index}>
-       <CartItem item={item} onRemoveItem={() => removeCartItem(item.id)} onQuantityChange={(newQuantity) => handleQuantityChange(index, newQuantity)} />
-      </div>)} )
-    }
-      <div className={"form-actions"}>
-        <button className={"primary-button"} onClick={handleCheckout}>Checkout</button>
+  return (
+    <div className="cart-page container">
+      <h1 className="cart-title">Your Cart</h1>
+      <p className="cart-subtitle">Review the items below before proceeding to checkout.</p>
+      <div className="cart-items">
+        {cart.length === 0 && (
+          <div className="empty-state">Your cart is empty.</div>
+        )}
+        {cart.map((item, index) => (
+          <div className="cart-item" key={index}>
+            <CartItem
+              item={item}
+              onRemoveItem={() => removeCartItem(item.id)}
+              onQuantityChange={(newQuantity) => handleQuantityChange(index, newQuantity)}
+            />
+          </div>
+        ))}
       </div>
-
-  </>
+      {cart.length > 0 && (
+        <div className="form-actions cart-actions">
+          <button className="primary-button" onClick={handleCheckout}>Checkout</button>
+        </div>
+      )}
+    </div>
+  )
 }
